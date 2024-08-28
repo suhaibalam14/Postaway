@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/suhaibalam14/postAway-SocialMediaProject/issues"
   },
-  "homepage": "https://github.com/suhaibalam14/postAway-SocialMediaProject#readme"
+  "homepage": "https://github.com/suhaibalam14/postAway-SocialMediaProject#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
