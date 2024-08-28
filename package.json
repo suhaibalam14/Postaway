@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/suhaibalam14/postAway-SocialMediaProject.git"
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/suhaibalam14/postAway-SocialMediaProject#readme",
   "dependencies": {
-    "express": "^4.19.2"
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2"
   }
 }
