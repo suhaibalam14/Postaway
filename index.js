@@ -1,7 +1,15 @@
 import express from 'express'
-import userRouter from './src/user/user.routes.js';
 import bodyParser from 'body-parser';
+import usersRouter from './src/features/user/user.routes.js';
+import postRouter from './src/features/post/post.routes.js';
+import jwtAuth from './src/middlewares/jwt.middleware.js';
+
 const app = express();
+
+//parse form data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
 
 app.get('/', (req, res)=>{
     res.send('Welcome to ExpressJS Postaway server :-)')
@@ -13,7 +21,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 //api's routes
 
-app.use("/api/users", userRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/posts",jwtAuth, postRouter);
+
+// app.use("/api/likes", likesRouter);
+// app.use("/api/comments", commentsRouter);
 
 
 
