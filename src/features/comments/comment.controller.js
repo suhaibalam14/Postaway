@@ -15,7 +15,7 @@ export default class CommentController {
     } else {
       res.status(200).json({
         Message:
-          "The post you're looking for is not found or does'nt exist :-(",
+          "The post you're looking for is not found or doesn't exist :-(",
       });
     }
   }
@@ -31,7 +31,7 @@ export default class CommentController {
     } else {
       res.status(200).json({
         Message:
-          "The post you're looking for is not found or does'nt exist :-(",
+          "The post you're looking for is not found or doesn't exist :-(",
       });
     }
   }
