@@ -49,18 +49,17 @@ export default class PostModel {
     const postIndex = posts.findIndex((i) => {
       return i.id == postID && i.userID == userID;
     });
-    if(postIndex > -1){
+    if (postIndex > -1) {
       const post = new PostModel(postID, userID, caption, imageUrl);
       posts[postIndex] = post;
       return post;
-    }else{
+    } else {
       return null;
     }
-    
   }
 }
 
-var posts = [
+export var posts = [
   {
     id: 0,
     userID: 1,
