@@ -23,10 +23,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/api/users", usersRouter);
 app.use("/api/posts", jwtAuth, postRouter);
-
 app.use("/api/comments", jwtAuth, commentRouter);
 
-// app.use("/api/likes", likesRouter);
+
+
 
 app.listen(4200, () => {
   console.log("Server is listening at http://localhost:4200");
