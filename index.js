@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import usersRouter from "./src/features/user/user.routes.js";
 import postRouter from "./src/features/post/post.routes.js";
 import commentRouter from "./src/features/comments/comment.routes.js";
+import likeRouter from "./src/features/likes/like.routes.js";
 import jwtAuth from "./src/middlewares/jwt.middleware.js";
 
 const app = express();
@@ -24,8 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api/users", usersRouter);
 app.use("/api/posts", jwtAuth, postRouter);
 app.use("/api/comments", jwtAuth, commentRouter);
-
-
+app.use("/api/likes", jwtAuth, likeRouter);
 
 
 app.listen(4200, () => {

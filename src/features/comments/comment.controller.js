@@ -5,7 +5,6 @@ export default class CommentController {
     const content = req.body.content;
     const postID = req.params.id;
     const userID = req.userID;
-    console.log(userID);
     const newCommentobj = CommentModel.addComment(userID, postID, content);
     if (newCommentobj) {
       res.status(200).json({
