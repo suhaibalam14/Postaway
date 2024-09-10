@@ -1,3 +1,12 @@
 {"level":"info","message":"Wed Sep 11 2024 01:33:05 GMT+0530 (India Standard Time) + /api/posts/createPost - {}"}
 {"level":"info","message":"Wed Sep 11 2024 01:33:06 GMT+0530 (India Standard Time) + /api/posts/createPost - {}"}
 {"level":"info","message":"Wed Sep 11 2024 01:33:07 GMT+0530 (India Standard Time) + /api/posts/createPost - {}"}
+{"level":"info","message":"Wed Sep 11 2024 01:37:15 GMT+0530 (India Standard Time) + /api/posts/createPost - [object Object]"}
+{"level":"info","message":"Wed Sep 11 2024 01:37:18 GMT+0530 (India Standard Time) + /api/posts/createPost - [object Object]"}
+{"level":"info","message":"Wed Sep 11 2024 01:37:20 GMT+0530 (India Standard Time) + /api/posts/createPost - [object Object]"}
+{"level":"info","message":"Wed Sep 11 2024 01:38:47 GMT+0530 (India Standard Time) + /api/posts/createPost - {}"}
+{"level":"info","message":"Wed Sep 11 2024 01:41:02 GMT+0530 (India Standard Time) + /api/likes/toggle/5 - {}"}
+{"level":"info","message":"Wed Sep 11 2024 01:41:14 GMT+0530 (India Standard Time) + /api/likes/toggle/5 - {}"}
+{"level":"info","message":"Wed Sep 11 2024 01:43:42 GMT+0530 (India Standard Time) + /api/comments/5 - {\"content\":\"Hi, I'm a content\"}"}
+{"level":"info","message":"Wed Sep 11 2024 01:43:56 GMT+0530 (India Standard Time) + /api/comments/5 - {\"content\":\"Hi, I'm a content\"}"}
+{"level":"info","message":"Wed Sep 11 2024 01:44:14 GMT+0530 (India Standard Time) + /api/comments/5 - {\"content\":\"Hi, I'm a content\"}"}
