@@ -1,3 +1,5 @@
+import { ApplicationError } from "../../errorHandler/applicationError.js";
+
 export default class UserModel {
   constructor(id, name, email, password) {
     this.id = id;
@@ -6,14 +8,25 @@ export default class UserModel {
     this.password = password;
   }
   static addUser(name, email, password) {
-    const newUser = new UserModel(users.length + 1, name, email, password);
-    users.push(newUser);
-    return newUser;
+    try {
+      const newUser = new UserModel(users.length + 1, name, email, password)
+      users.push(newUser)
+      return newUser;
+    } catch (error) {
+      console.log(error)
+      throw new ApplicationError('Something went wrong', 500);
+    }
   }
 
   static isUserRegistered(email, password) {
-    const user = users.find((u) => u.email == email && u.password == password);
-    return user;
+    try {
+      const user = users.find((u) => u.email == email && u.password == password);
+      return user;
+    } catch (error) {
+      console.log(error)
+      throw new ApplicationError('Something went wrong', 500);
+    }
+
   }
 }
 

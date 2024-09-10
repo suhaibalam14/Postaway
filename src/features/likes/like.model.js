@@ -1,3 +1,4 @@
+import { ApplicationError } from "../../errorHandler/applicationError.js";
 import { posts } from "../post/post.model.js";
 export default class LikeModel {
     constructor(id, userID, postID) {
@@ -6,38 +7,49 @@ export default class LikeModel {
         this.postID = parseInt(postID);
     }
     static getLikes(postID) {
-        const post = posts.find(p => p.id == postID)
-        if (!post)
-            return "The post you are looking for is not fount or it may doesn't exist";
-        const postLikes = likes.filter(l => l.postID == postID)
-        if (postLikes.length > 0)
-            return ({
-                Message: "Post found successfully:-)",
-                NumberOfLikes: postLikes.length,
-                Likes: postLikes
-            });
-        else
-            return 'Post exists but no one liked it';
+        try {
+            const post = posts.find(p => p.id == postID)
+            if (!post)
+                return "The post you are looking for is not fount or it may doesn't exist";
+            const postLikes = likes.filter(l => l.postID == postID)
+            if (postLikes.length > 0)
+                return ({
+                    Message: "Post found successfully:-)",
+                    NumberOfLikes: postLikes.length,
+                    Likes: postLikes
+                });
+            else
+                return 'Post exists but no one liked it';
+
+        } catch (error) {
+            console.log(error);
+            throw new ApplicationError('Something went wrong', 500);
+        }
     }
 
     static toggleLike(postID, userID) {
-        const post = posts.find(p => p.id == postID)
-        if (!post)
-            return "The post you are looking for is not fount or it may doesn't exist";
-        const likeIndex = likes.findIndex(l => l.postID == postID && l.userID == userID)
-        if (likeIndex == -1) {
-            const like = new LikeModel(likes.length, userID, postID);
-            likes.push(like)
-            return ({
-                Message: "Post liked successfully :-)",
-                Like: like
-            });
-        } else {
-            const unlike = likes.splice(likeIndex, 1);
-            return ({
-                Message: "Post unliked successfully :-)",
-                Like: unlike[0]
-            });
+        try {
+            const post = posts.find(p => p.id == postID)
+            if (!post)
+                return "The post you are looking for is not fount or it may doesn't exist";
+            const likeIndex = likes.findIndex(l => l.postID == postID && l.userID == userID)
+            if (likeIndex == -1) {
+                const like = new LikeModel(likes.length, userID, postID);
+                likes.push(like)
+                return ({
+                    Message: "Post liked successfully :-)",
+                    Like: like
+                });
+            } else {
+                const unlike = likes.splice(likeIndex, 1);
+                return ({
+                    Message: "Post unliked successfully :-)",
+                    Like: unlike[0]
+                });
+            }
+        } catch (error) {
+            console.log(error)
+            throw new ApplicationError('Something went wrong', 500);
         }
     }
 

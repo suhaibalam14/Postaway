@@ -5,6 +5,7 @@ import postRouter from "./src/features/post/post.routes.js";
 import commentRouter from "./src/features/comments/comment.routes.js";
 import likeRouter from "./src/features/likes/like.routes.js";
 import jwtAuth from "./src/middlewares/jwt.middleware.js";
+import { ApplicationError } from "./src/errorHandler/applicationError.js";
 
 const app = express();
 
@@ -26,6 +27,32 @@ app.use("/api/users", usersRouter);
 app.use("/api/posts", jwtAuth, postRouter);
 app.use("/api/comments", jwtAuth, commentRouter);
 app.use("/api/likes", jwtAuth, likeRouter);
+
+//error handling middleware
+app.use((err, req, res, next) => {
+
+  //application level error
+  if (err instanceof ApplicationError) {
+    res.status(err.code).send(err.message);
+  }
+
+  //internal server level error
+
+  res
+    .status(500)
+    .send(
+      "We are sorry but something went wrong, plese try again later, Thank you:-) "
+    );
+});
+
+//middleware to handle 404 request
+app.use((req, res) => {
+  res
+    .status(404)
+    .send(
+      "API not found, kindly have a look over the documentation, Thank you :-)"
+    );
+});
 
 
 app.listen(4200, () => {

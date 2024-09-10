@@ -1,3 +1,5 @@
+import { ApplicationError } from "../../errorHandler/applicationError.js";
+
 export default class PostModel {
   constructor(id, userID, caption, imageUrl) {
     this.id = id;
@@ -17,44 +19,72 @@ export default class PostModel {
       posts.push(newPost);
       return newPost;
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      throw new ApplicationError("Something went wrong", 500);
     }
   }
 
   static getAllPost() {
-    return posts;
+    try {
+      return posts;
+    } catch (error) {
+      console.log(error)
+      throw new ApplicationError('Something went wrong', 500);
+    }
   }
 
   static getPostById(postID) {
-    const post = posts.find((p) => p.id == postID);
-    return post;
+    try {
+      const post = posts.find((p) => p.id == postID);
+      return post;
+
+    } catch (error) {
+      console.log(error)
+      throw new ApplicationError("Something went wrong", 500);
+    }
   }
 
   static getPostByUserCred(userID) {
-    const userPost = posts.filter((p) => p.userID == userID);
-    return userPost;
+    try {
+      const userPost = posts.filter((p) => p.userID == userID);
+      return userPost;
+
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError('Something went wrong', 500);
+    }
   }
 
   static deletePostById(postID, userID) {
-    const postIndex = posts.findIndex((i) => {
-      return i.id == postID && i.userID == userID;
-    });
-    if (postIndex > -1) {
-      const post = posts.splice(postIndex, 1);
-      return post;
-    } else return null;
+    try {
+      const postIndex = posts.findIndex((i) => {
+        return i.id == postID && i.userID == userID;
+      });
+      if (postIndex > -1) {
+        const post = posts.splice(postIndex, 1);
+        return post;
+      } else return null;
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError('Something went wrong', 500);
+    }
   }
 
   static updatePostById(postID, userID, imageUrl, caption) {
-    const postIndex = posts.findIndex((i) => {
-      return i.id == postID && i.userID == userID;
-    });
-    if (postIndex > -1) {
-      const post = new PostModel(postID, userID, caption, imageUrl);
-      posts[postIndex] = post;
-      return post;
-    } else {
-      return null;
+    try {
+      const postIndex = posts.findIndex((i) => {
+        return i.id == postID && i.userID == userID;
+      });
+      if (postIndex > -1) {
+        const post = new PostModel(postID, userID, caption, imageUrl);
+        posts[postIndex] = post;
+        return post;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError('Something went wrong', 500);
     }
   }
 }

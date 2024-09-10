@@ -1,3 +1,4 @@
+import { ApplicationError } from "../../errorHandler/applicationError.js";
 import { posts } from "../post/post.model.js";
 export default class CommentModel {
   constructor(id, userID, postID, content) {
@@ -7,47 +8,67 @@ export default class CommentModel {
     this.content = content;
   }
   static addComment(userID, postID, content) {
-    const post = posts.find((p) => p.id == postID);
-    if (!post) return null;
-    const newCommentObj = new CommentModel(
-      comments.length,
-      userID,
-      postID,
-      content
-    );
-    comments.push(newCommentObj);
-    return newCommentObj;
+    try {
+      const post = posts.find((p) => p.id == postID);
+      if (!post) return null;
+      const newCommentObj = new CommentModel(
+        comments.length,
+        userID,
+        postID,
+        content
+      );
+      comments.push(newCommentObj);
+      return newCommentObj;
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError('Something went wrong', 500);
+    }
   }
 
   static getcommentsbyID(postID) {
-    const post = posts.find((p) => p.id == postID);
-    if (!post) return null;
-    const postComments = comments.filter((p) => p.postID == postID);
-    return postComments;
+    try {
+      const post = posts.find((p) => p.id == postID);
+      if (!post) return null;
+      const postComments = comments.filter((p) => p.postID == postID);
+      return postComments;
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError('Something went wrong', 500);
+    }
   }
 
   static updateComment(commentID, userID, content) {
-    const commentIndex = comments.findIndex(
-      (i) => i.id == commentID && i.userID == userID
-    );
-    if (commentIndex > -1) {
-      comments[commentIndex].content = content;
-      return comments[commentIndex];
-    } else {
-      return null;
+    try {
+      const commentIndex = comments.findIndex(
+        (i) => i.id == commentID && i.userID == userID
+      );
+      if (commentIndex > -1) {
+        comments[commentIndex].content = content;
+        return comments[commentIndex];
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError("Something went wrong", 500);
     }
   }
 
   static deleteComment(commentID, userID) {
-    const commentIndex = comments.findIndex(
-      (i) => i.id == commentID && i.userID == userID
-    );
+    try {
+      const commentIndex = comments.findIndex(
+        (i) => i.id == commentID && i.userID == userID
+      );
 
-    if (commentIndex > -1) {
-      const commentObj = comments.splice(commentIndex, 1);
-      return commentObj;
-    } else {
-      return null;
+      if (commentIndex > -1) {
+        const commentObj = comments.splice(commentIndex, 1);
+        return commentObj;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError('Something went wrong', 500);
     }
   }
 }
