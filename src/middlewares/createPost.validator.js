@@ -3,7 +3,7 @@ import { body, validationResult } from "express-validator";
 const createPostValidator = async (req, res, next) => {
   const rules = [
     body("caption").notEmpty().withMessage("Caption is empty!"),
-    body("resumeUrl").custom((value, { req }) => {
+    body("imageUrl").custom((value, { req }) => {
       if (!req.file) throw new Error("Image file is required!");
       return true;
     }),

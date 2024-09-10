@@ -1,5 +1,6 @@
 import PostModel from "./post.model.js";
 import { users } from "../user/user.model.js";
+import { ApplicationError } from "../../errorHandler/applicationError.js";
 
 export default class PostController {
 

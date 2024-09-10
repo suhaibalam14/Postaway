@@ -6,6 +6,7 @@ import commentRouter from "./src/features/comments/comment.routes.js";
 import likeRouter from "./src/features/likes/like.routes.js";
 import jwtAuth from "./src/middlewares/jwt.middleware.js";
 import { ApplicationError } from "./src/errorHandler/applicationError.js";
+import loggerMiddleware from "./src/middlewares/logger.middleware.js";
 
 const app = express();
 
@@ -20,6 +21,9 @@ app.get("/", (req, res) => {
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+//logger middleware
+app.use(loggerMiddleware)
 
 //api's routes
 
