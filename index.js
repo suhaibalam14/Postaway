@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //logger middleware
 app.use(loggerMiddleware)
-
+//cool 
 //api's routes
 
 app.use("/api/users", usersRouter);
